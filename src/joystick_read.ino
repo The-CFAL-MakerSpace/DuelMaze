@@ -2,7 +2,7 @@
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x26, 16, 2);
+LiquidCrystal_I2C lcd(0x3F, 16, 2); //I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
 
 const int x = A0;
 const int y = A1;
