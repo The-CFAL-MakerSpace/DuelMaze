@@ -41,7 +41,7 @@ void setup() {
     int in = digitalRead(commin);
     Serial.begin(9600);
     sx.attach(9);  //attach servos
-    sy.attach(8);
+    sy.attach(10);
     lcd.init();     
     lcd.backlight();
     if (in ==   HIGH){
