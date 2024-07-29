@@ -27,6 +27,8 @@ const int yupper = 170;
 const int xlower = 10;
 const int ylower = 10;
 
+bool lost;
+
 //this i a porject depicting thedeath of the 
 void setup() {
   // put your setup code here, to run once:
@@ -38,18 +40,16 @@ void setup() {
     pinMode(hfs, INPUT);
     pinMode(commin, INPUT_PULLUP);
     pinMode(commout, OUTPUT);
-    int in = digitalRead(commin);
+    attachInterrupt(digitalPinToInterrupt(commin), communicate, FALLING);
+    bool in = digitalRead(commin);
     Serial.begin(9600);
     sx.attach(9);  //attach servos
     sy.attach(10);
     lcd.init();     
     lcd.backlight();
-    if (in ==   HIGH){
-
-    }
     // check if marble is at start point, act appropriately
     if(analogRead(hfs) > threshold){
-      gameover();  //main menu
+      gamereset();  //main menu
     }
     else{
       marblereset();  //bring marble to start, if not already
@@ -57,7 +57,17 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+    int xval = analogRead(x);
+    int yval = analogRead(y);
+    int bval = digitalRead(button);
+    int hfeval = analogRead(hfe);
+    //check if the other player has won the game.
+    if (lost == true){
+      gameover(false);
+    }
+    else if(hfeval > threshold){
+      gameover(true);
+    }
     time = millis();  
     //check if time is exactly 1,2,3.... seconds
     if(time%1000 == 0)  {
@@ -67,18 +77,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print(time/1000)
     }
-    int xval = analogRead(x);
-    int yval = analogRead(y);
-    int bval = digitalRead(button);
-    int hfeval = analogRead(hfe);
-    if(hfeval> threshold){
-      while true
-      unsigned long initaltime = millis();
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("G")
-      lcd.print("")
-    }
+    //dont waste any more precious cycles and move the maze...
     int xval = map(xval, 0, 1023, xlower, xupper);
     sx.write(xval);d
     int yval = map(xval, 0, 1023, ylower, yupper);
@@ -89,29 +88,51 @@ void loop() {
     Serial.print(yval);
     Serial.print(" button = ");
     Serial.println(bval);
-    
-
 }
 
-void gameover{
+void gamereset(){
   sx.write(xrest);
   sy.write(yrest);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Press button to");
-  lcd.setCursor(0, 1);
-  lcd.print("Start Game.");
+  unsigned long initialtime = millis();
+  bool flippy;
   while(true){
+    time = millis()-initialtime;
+    delay(1);
+    if (time>2000){
+      lcd.clear();
+      lcd.setCursor(0,0);
+      if (flippy){
+        lcd.print("DuelMaze: Welcome!");
+        lcd.setCursor(0,1);
+        lcd.print("Ready to Roll?")
+      }
+      else{
+    lcd.print("Press button to");
+    lcd.setCursor(0, 1);
+    lcd.print("Start Game.");
+      }
+      flippy = !flippy;
+      initialtime = millis();
+    }
     if(digitalRead(button)==LOW){
-      gamestart();
+      return();
     }
   }
 }
 
+void gameover(bool outcome){
+
+}
+
+
 void marblereset(){
   //trial 'n' error bois
   //once shitty complicated code done,
-  gameover();
+  gamereset();
 }
 
-void 
+void communicate(){
+
+}
