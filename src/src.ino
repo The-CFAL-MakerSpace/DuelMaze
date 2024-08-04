@@ -3,7 +3,6 @@
 #include <Wire.h>
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
-#include <Servo.h>
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2); //I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
 
@@ -26,8 +25,7 @@ const int xupper = 170;
 const int yupper = 170;
 const int xlower = 10;
 const int ylower = 10;
-
-//this i a porject depicting thedeath of the 
+ 
 void setup() {
   // put your setup code here, to run once:
     pinMode(x, INPUT);  //set PinModes
@@ -114,4 +112,4 @@ void marblereset(){
   gameover();
 }
 
-void 
+
