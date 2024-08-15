@@ -1,10 +1,11 @@
 //Made with ♥ by MakerSpace 2024-2026
 
+#include <Arduino.h>
 #include <Wire.h>
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x3F, 16, 2); //I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
+LiquidCrystal_I2C lcd(0x27, 16, 2); //I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
 
 const int x = A0;  //joystick :)
 const int y = A1;  
@@ -25,6 +26,11 @@ const int xupper = 170;
 const int yupper = 170;
 const int xlower = 10;
 const int ylower = 10;
+
+void gameover(bool outcome);
+void gamereset();
+void marblereset();
+void communicate();
  
 void setup() {
   // put your setup code here, to run once:
@@ -70,7 +76,7 @@ void loop() {
     int bval = digitalRead(button);
     int hfeval = analogRead(hfe);
     if(hfeval> threshold){
-      while true
+      while 
       unsigned long initaltime = millis();
       lcd.clear();
       lcd.setCursor(0, 0);
