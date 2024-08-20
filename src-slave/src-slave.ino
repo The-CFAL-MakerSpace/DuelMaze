@@ -4,19 +4,21 @@
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x3F, 16, 2); // I2C address may vary
+LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address may vary
+// LCD Goes to A4 A5
 
 const int x = A0;  // joystick x-axis
 const int y = A1;  // joystick y-axis
-const int jbutton = 3;  // joystick button
-const int button = 4;  // regular button
+const int jbutton = 5;  // joystick button
+const int button = 6;  // regular button
 const int hfs = 5;  // hall effect sensor at start
 const int hfe = 6;  // hall effect sensor at end
 const int threshold = 255; // threshold for hall effect sensor
 unsigned long startTime;  // variable to hold start time of player
 unsigned long elapsedTime;  // variable to hold elapsed time
-const int commin = 12;  // communication input pin
-const int commout = 13;  // communication output pin
+const int commin = 3;  // communication input pin
+const int commout = 4;  // communication output pin
+
 
 Servo sx; 
 Servo sy;
@@ -53,7 +55,7 @@ void setup() {
 
 void loop() {
     if (!gameStarted) {
-        if (digitalRead(button) == LOW) {
+        if (digitalRead(jbutton) == LOW) {
             gamestart();
         }
     } else {
