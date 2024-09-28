@@ -63,7 +63,7 @@ void setup()
   {
   }
   // check if marble is at start point, act appropriately
-  if (analogRead(hfs) > threshold)
+  if (digitalRead(hfs) == HIGH)
   {
     gamereset(); // main menu
   }
@@ -96,22 +96,17 @@ void loop()
   xval = analogRead(x);
   yval = analogRead(y);
   int bval = digitalRead(button);
-  int hfeval = analogRead(hfe);
-  // if (hfeval > threshold)
-  // {
-  //   while (true)
-  //   {
-  //     unsigned long initaltime = millis();
-  //     lcd.clear();
-  //     lcd.setCursor(0, 0);
-  //     lcd.print("G");
-  //     lcd.print("");
-  //   }
-  // }
+  int hfeval = digitalRead(hfe);
+
+  if (hfeval == HIGH) { // Change from hfeval > threshold to hfeval == HIGH
+    gameover(); // trigger game over when end sensor is activated
+  }
+
   xval = map(xval, 0, 1023, xlower, xupper);
+  yval = map(yval, 0, 1023, ylower, yupper);
   sx.write(xval);
-  yval = map(xval, 0, 1023, ylower, yupper);
   sy.write(yval);
+  
   Serial.print("x = ");
   Serial.print(xval);
   Serial.print(" y = ");
@@ -149,22 +144,26 @@ void gamereset()
       pulse();
       flag = false;
     }
-    if(flag == true){
-      oppready = true;
+
+    // Check if the opponent is ready via interrupt
+    if (flag) {
+      oppready = true; // Set opponent ready
       initialtime = millis();
       lcd.clear();
-      lcd.setCursor(0,0);
+      lcd.setCursor(0, 0);
       lcd.print("Opponent Ready...");
       lcd.setCursor(0, 1);
-    lcd.print("Are you?");
-    flag = false;
+      lcd.print("Are you?");
+      flag = false; // Reset flag after processing
     }
-    if (ready == true && oppready == true){
+
+    if (ready && oppready) {
       initialtime = millis();
-      return;
+      return; // Start the game
     }
   }
 }
+
 
 void marblereset()
 {
@@ -172,6 +171,7 @@ void marblereset()
   // once shitty complicated code done,
   initialtime = millis();
   gamereset();
+
 }
 ISR(WDT_vect)
 {
@@ -190,4 +190,14 @@ void pulse(){
   digitalWrite(commout, LOW);
   delay(1);
   digitalWrite(commout, HIGH);
+}
+
+void gameover() {
+  // Implement game over logic here
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Game Over!");
+  // Reset the game or return to main menu as needed
+  delay(3000); // Display for 3 seconds
+  gamereset(); // Reset game
 }
