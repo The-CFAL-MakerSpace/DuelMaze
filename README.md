@@ -7,3 +7,9 @@ To contribute, make sure to open a branch first, and commit there and then the U
 
 # Current:
 The current code is very basic, and not intended to be the final version as of now, it will, however be modified over the coming days and will slowly turn into the main source code, after lots of simulations ofc.
+
+# These are some values:
+### Servos:
+```
+val = map(val, 90, 1023, 60, 77)
+```
