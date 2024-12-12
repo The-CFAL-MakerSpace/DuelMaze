@@ -5,15 +5,16 @@
 #include <Wire.h>
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
+#include <EEPROM.h>
 
 bool flag;
 int count;
-LiquidCrystal_I2C lcd(0x3F, 16, 2); // I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
-
+LiquidCrystal_I2C lcd1(0x3F, 16, 2); // I2c will vary from module to module. Use the I2c scanner to find the correct address of your I2c module.
+LiquidCrystal_I2C lcd2(0x27, 16, 2);
 const int x = A0; // joystick :)
 const int y = A1;
 const int jbutton = 3;     // joystick button
-const int button = 4;      // regular button
+const int button = 6;      // regular button
 const int hfs = 5;         // hall effect sensor at start (hf -> hall-effect, s-> start)
 const int hfe = 6;         // hall effect sensor at end
 const int threshold = 255; // threshold for hall effect
@@ -26,10 +27,10 @@ Servo sx;
 Servo sy;
 const int xrest = 90; // rest positions of servos
 const int yrest = 90;
-const int xupper = 170;
-const int yupper = 170;
-const int xlower = 10;
-const int ylower = 10;
+const int xupper = 100;
+const int yupper = 100;
+const int xlower = 80;
+const int ylower = 80;
 int xval;
 int yval;
 
@@ -42,6 +43,7 @@ void setup()
 {
   // put your setup code here, to run once:
   wdt_disable();
+  EEPROM.begin();
   pinMode(x, INPUT); // set PinModes
   pinMode(y, INPUT);
   pinMode(button, INPUT_PULLUP);
@@ -54,8 +56,16 @@ void setup()
   Serial.begin(9600);
   sx.attach(9); // attach servos
   sy.attach(10);
-  lcd.init();
-  lcd.backlight();
+  bool done = false;
+  while (!done){
+    sx.write(xrest);
+    sy.write(yrest);
+    if (!digitalRead(button)){
+      done = true;
+    }
+  }
+  lcd1.init();
+  lcd1.backlight();
   if (in == HIGH)
   {
   }
@@ -82,11 +92,9 @@ void loop()
   // check if time is exactly 1,2,3.... seconds
   if (flag == true)
   {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Player 1 Time:");
-    lcd.setCursor(0, 1);
-    lcd.print(count);
+
+    lcd1.setCursor(0, 1);
+    lcd1.print(count);
     count++;
     flag = false;
   }
@@ -99,10 +107,10 @@ void loop()
   //   while (true)
   //   {
   //     unsigned long initaltime = millis();
-  //     lcd.clear();
-  //     lcd.setCursor(0, 0);
-  //     lcd.print("G");
-  //     lcd.print("");
+  //     lcd1.clear();
+  //     lcd1.setCursor(0, 0);
+  //     lcd1.print("G");
+  //     lcd1.print("");
   //   }
   // }
   xval = map(xval, 0, 1023, xlower, xupper);
@@ -121,15 +129,28 @@ void gamereset()
 {
   sx.write(xrest);
   sy.write(yrest);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Press button to");
-  lcd.setCursor(0, 1);
-  lcd.print("Start Game.");
+  lcd1.clear();
+  lcd1.setCursor(0, 0);
+  lcd1.print("Made with l By");
+  lcd1.setCursor(0, 1);
+  lcd1.print("MakerSpace CFAL.");
+  lcd2.clear();
+  lcd2.setCursor(0, 0);
+  lcd2.print("Press button to");
+  lcd2.setCursor(0, 1);
+  lcd2.print("Start Game.");
   while (true)
   {
     if (digitalRead(button) == LOW)
     {
+      lcd2.clear();
+      lcd2.setCursor(0, 0);
+      lcd2.print("Press button to");
+      lcd2.setCursor(0, 1);
+      lcd2.print("Forfeit Game.");
+      lcd1.clear();
+      lcd1.setCursor(0, 0);
+      lcd1.print("Player 1 Time:");
       initialtime = millis();
       return;
     }
