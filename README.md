@@ -28,9 +28,9 @@ Two players race to get a marble from the Starting point to the ending point in 
 ### Technical Details Warning - Pay attention if you're in charge of setting this up.
 
 ## Initial Hardware Setup
-
+0. Disconnect the maze from the servos and make sure it can move freely, else figure that out. Make sure no wires are loose or any free wires seperated from the circuit. Most cables are color-coded, hence any non color blind person cannot mess this part up.
 1. Firstly, all connections to the prototype board (the brown one) have been soldered directly. dont try to pull them out. The central female headers are for the Arduino Nano, and **the orientation is done in such a way that the USB socket of the nano is facing the green connector closest to the female header**. When the USB cable is connected, the communication line (yet to be explained) cannot be connected simultaneously.
-2. The connection from the components to the Nano are done via white screw connectors. **Check for any loose/disconnected cable and follow the schematic to reconnect**. The joystick cable is soldered directly, **Do NOT try to pull it out**. The rest of the components are attached via jumper cables.
+2. The connection from the components to the Nano is done via white screw connectors. **Check for any loose/disconnected cable and follow the schematic to reconnect**. The joystick cable is soldered directly. **Do NOT try to pull it out**. The rest of the components are attached via jumper cables.
 3. The green female connectors on the board each serve a purpose. **The one right next to the USB Socket of the Nano is the Communication-Line and the one further away is the power line. DO NOT MIX THE TWO UP**.
 
 ## Initial Software setup
@@ -39,7 +39,8 @@ Two players race to get a marble from the Starting point to the ending point in 
 ## Hardware troubleshooting
 1. Servo is very Jittery -> Usually a problem with the joystick. check for loose connections. If it 
 
-
+## Suggested future edits
+1. Find a better mechanism (this is lirally the 
 
 
 
