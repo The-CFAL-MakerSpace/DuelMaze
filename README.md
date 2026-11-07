@@ -1,17 +1,18 @@
 # DuelMaze - A two player physical arcade game.
 
 ## Credits - Makerspace Batch of '26
--> Sharaj Shreyas:- Makerspace President, Hardware Primary UC, Assertive Eyebrows.
--> Sanath Sanjay Shet:- Software Primary UC, Idk what to write about myself, Slay Queen.
--> Nandan Bhandary:- Hardware Primary UC, Designed the Circuitry, Very good at electronics.
--> Lauren Patrao:- Maze Design UC, Very smart nerd, Math afficionado.
--> Vignesh Navada:- Media Team, Really good with Cameras, check out his yt.
--> Pratheek Bhat:- Software UC, Hardcore F1 Fan.
--> Arnav Raju Ghote:-Design Team, Hardcore F1 Fan.
--> Abhhi Sanayya:- Software UC, 
--> Tarang Rajeev:- Maze Design Team, Hardcore F1 Fan.
+-> Sanath Sanjay Shet:- Software Primary UC, Came up with the project idea. Coordinated members across teams, Designed circuitry and worked on almost the entire codebase.\
+-> Sharaj Shreyas:- Makerspace President, Hardware Primary UC, Assertive Eyebrows. Worked on circuitry for both mazes. Coordinated members across teams.\
+-> Nandan Bhandary:- Hardware Primary UC, Designed the Circuitry, Very good at electronics. Worked on circuitry for both mazes, and soldering.\
+-> Lauren Patrao:- Maze Design UC, Very smart nerd, Math afficionado. Worked on Designing one out of two mazes.\
+-> Vignesh Navada:- Media Team, Really good with Cameras, check out his yt. Worked on PR.\
+-> Pratheek Bhat:- Software UC, Hardcore F1 Fan. Worked on software.\
+-> Arnav Raju Ghote:-Design Team, Hardcore F1 Fan.Worked on maze construction.\
+-> Aakanksh Prabhu:- Design Team, worked on the physical maze construction.\
+-> Abhhi Sanayya:- Software UC.\
+-> Tarang Rajeev:- Maze Design Team, Hardcore F1 Fan.\
 -> Manvith Udupa:- Software Team, Web development team, Media Team, Great guy.
--> 
+
 
 ## Read this upto the technical details warning Before doing anything silly with our Project!
 
