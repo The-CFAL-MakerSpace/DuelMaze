@@ -1,8 +1,8 @@
 # DuelMaze - A two player physical arcade game.
 
 ## Credits - Makerspace Batch of '26
--> Sanath Sanjay Shet:- Software Primary UC, Came up with the project idea. Coordinated members across teams, Designed circuitry and worked on almost the entire codebase.\
--> Sharaj Shreyas:- Makerspace President, Hardware Primary UC, Assertive Eyebrows. Worked on circuitry for both mazes. Coordinated members across teams.\
+-> Sanath Sanjay Shet:- Software Primary UC, Came up with the project idea. Idk what to write about myself. Coordinated members across teams, Designed circuitry and worked on almost the entire codebase.\
+-> Sharaj Shreyas:- Makerspace President, Hardware Primary UC, Assertive Eyebrows. Worked on circuitry for both mazes. Coordinated members across teams. Came up with a novel and wonderful idea for the tilting mechanism. CAD genius btw.\
 -> Nandan Bhandary:- Hardware Primary UC, Designed the Circuitry, Very good at electronics. Worked on circuitry for both mazes, and soldering.\
 -> Lauren Patrao:- Maze Design UC, Very smart nerd, Math afficionado. Worked on Designing one out of two mazes.\
 -> Vignesh Navada:- Media Team, Really good with Cameras, check out his yt. Worked on PR.\
